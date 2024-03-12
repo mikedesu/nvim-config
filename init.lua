@@ -28,7 +28,6 @@ vim.g.maplocalleader = " "
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 -- Make line numbers default
 vim.opt.number = true
@@ -75,51 +74,6 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
---------------------
--- darkmage's custom neovim stuff
--- left hand keymap
--- common key motions involving delete
--- delete line
-vim.keymap.set("n", "kk", "dd", { noremap = true, silent = true })
--- delete current and next line
-vim.keymap.set("n", "kf", "dj", { noremap = true, silent = true })
--- remap h j k l to s d f g
-vim.keymap.set("n", "h", "s", { noremap = true, silent = true })
-vim.keymap.set("n", "j", "f", { noremap = true, silent = true })
-vim.keymap.set("n", "k", "d", { noremap = true, silent = true })
-vim.keymap.set("n", "l", "g", { noremap = true, silent = true })
--- remap s d f g to h j k l
-vim.keymap.set("n", "s", "h", { noremap = true, silent = true })
-vim.keymap.set("n", "d", "k", { noremap = true, silent = true })
-vim.keymap.set("n", "f", "j", { noremap = true, silent = true })
-vim.keymap.set("n", "g", "l", { noremap = true, silent = true })
--- visual mode remap
--- remap h j k l to s d f g
-vim.keymap.set("v", "h", "s", { noremap = true, silent = true })
-vim.keymap.set("v", "j", "f", { noremap = true, silent = true })
-vim.keymap.set("v", "k", "d", { noremap = true, silent = true })
-vim.keymap.set("v", "l", "g", { noremap = true, silent = true })
--- remap s d f g to h j k l
-vim.keymap.set("v", "s", "h", { noremap = true, silent = true })
-vim.keymap.set("v", "d", "k", { noremap = true, silent = true })
-vim.keymap.set("v", "f", "j", { noremap = true, silent = true })
-vim.keymap.set("v", "g", "l", { noremap = true, silent = true })
-
--- set up some useful leader shortcuts so it isnt such a PITA to do shit
-vim.keymap.set("n", "<leader>b", ":bnext<enter>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>p", ":bprev<enter>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>a", "@a", { desc = "Run macro a" })
-
-vim.opt.tabstop = 4 -- Number of spaces tabs count for
-vim.opt.shiftwidth = 4 -- Size of an indent
-vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.smartindent = true -- autoindent new lines
---------------------
--- end of darkmage's custom neovim stuff
---------------------
-
---vim.api.nvim_exec([[ autocmd CursorHold * update ]], false)
---vim.api.nvim_exec([[ set expandtab ]], false)
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -134,20 +88,14 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+--vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+--vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+--vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+--vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -172,8 +120,6 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- [[ Configure and install plugins ]]
---
 --  To check the current status of your plugins, run
 --    :Lazy
 --
@@ -410,23 +356,18 @@ require("lazy").setup({
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-T>.
 					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
 					-- Find references for the word under your cursor.
 					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
 					-- Jump to the implementation of the word under your cursor.
 					--  Useful when your language has ways of declaring types without an actual implementation.
 					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
 					-- Jump to the type of the word under your cursor.
 					--  Useful when you're not sure what type a variable is and you want to see
 					--  the definition of its *type*, not where it was *defined*.
 					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-
 					-- Fuzzy find all the symbols in your current document.
 					--  Symbols are things like variables, functions, types, etc.
 					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-
 					-- Fuzzy find all the symbols in your current workspace
 					--  Similar to document symbols, except searches over your whole project.
 					map(
@@ -788,11 +729,5 @@ require("lazy").setup({
 	{ import = "custom.plugins" },
 })
 
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
---
---
-
--- vim: ts=2 sts=2 sw=2 et
---
---
+-- import darkmage's custom keybinds
+require("mappings")
