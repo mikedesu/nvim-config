@@ -511,6 +511,14 @@ require("lazy").setup({
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
+				go = { "gofmt", "goimports" },
+				python = { "black" },
+				--c = { "clang-format" },
+				--cpp = { "clang-format" },
+				--html = { "prettierd" },
+				--css = { "prettierd" },
+				--javascript = { "prettierd" },
+				--rust = { "rustfmt" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
