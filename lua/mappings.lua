@@ -41,6 +41,7 @@ vim.opt.smartindent = true -- autoindent new lines
 vim.keymap.set("n", "<leader><left>", "<c-w><c-h>", { desc = "move focus to the left window" })
 vim.keymap.set("n", "<leader><right>", "<c-w><c-l>", { desc = "move focus to the right window" })
 
+vim.opt.mouse = ""
 --------------------
 -- end of darkmage's custom neovim stuff
 --------------------
