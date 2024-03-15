@@ -92,10 +92,10 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
---vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
---vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
---vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
---vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+--vim.keymap.set("n", "<c-h>", "<c-w><c-h>", { desc = "move focus to the left window" })
+--vim.keymap.set("n", "<c-l>", "<c-w><c-l>", { desc = "move focus to the right window" })
+--vim.keymap.set("n", "<c-j>", "<c-w><c-j>", { desc = "move focus to the lower window" })
+--vim.keymap.set("n", "<c-k>", "<c-w><c-k>", { desc = "move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -504,7 +504,7 @@ require("lazy").setup({
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		opts = {
-			notify_on_error = false,
+			notify_on_error = true,
 			format_on_save = {
 				timeout_ms = 500,
 				lsp_fallback = true,
@@ -513,9 +513,11 @@ require("lazy").setup({
 				lua = { "stylua" },
 				go = { "gofmt", "goimports" },
 				python = { "black" },
-				--c = { "clang-format" },
-				--cpp = { "clang-format" },
 				--html = { "prettierd" },
+				c = { "clang_format" },
+				cpp = { "clang_format" },
+				--c = { "astyle" },
+				--cpp = { "astyle" },
 				--css = { "prettierd" },
 				--javascript = { "prettierd" },
 				--rust = { "rustfmt" },

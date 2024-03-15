@@ -33,10 +33,14 @@ vim.keymap.set("n", "<leader>b", ":bnext<enter>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>p", ":bprev<enter>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>a", "@a", { desc = "Run macro a" })
 
-vim.opt.tabstop = 4 -- Number of spaces tabs count for
-vim.opt.shiftwidth = 4 -- Size of an indent
+vim.opt.tabstop = 2 -- Number of spaces tabs count for
+vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.smartindent = true -- autoindent new lines
+
+vim.keymap.set("n", "<leader><left>", "<c-w><c-h>", { desc = "move focus to the left window" })
+vim.keymap.set("n", "<leader><right>", "<c-w><c-l>", { desc = "move focus to the right window" })
+
 --------------------
 -- end of darkmage's custom neovim stuff
 --------------------
