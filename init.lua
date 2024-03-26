@@ -429,7 +429,9 @@ require("lazy").setup({
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				-- clangd = {},
+				clangd = {
+					cmd = { "clangd", "--offset-encoding=utf-16" },
+				},
 				-- gopls = {},
 				-- pyright = {},
 				-- rust_analyzer = {},
@@ -514,8 +516,8 @@ require("lazy").setup({
 				go = { "gofmt", "goimports" },
 				python = { "black" },
 				html = { "prettierd" },
-				c = { "clang_format" },
-				cpp = { "clang_format" },
+				--c = { "clang_format" },
+				--cpp = { "clang_format" },
 				zsh = { "shfmt" },
 				css = { "prettierd" },
 				javascript = { "prettierd" },
