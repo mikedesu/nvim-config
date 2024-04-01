@@ -1,6 +1,11 @@
 --------------------
 -- darkmage's custom neovim stuff
 -- left hand keymap
+--
+-- common key motions involving shift/indent
+vim.keymap.set("n", ">f", ">>j>>", { noremap = true, silent = true })
+vim.keymap.set("n", "<d", "<<k<<", { noremap = true, silent = true })
+
 -- common key motions involving delete
 -- delete line
 vim.keymap.set("n", "kk", "dd", { noremap = true, silent = true })
