@@ -34,8 +34,8 @@ vim.keymap.set("v", "f", "j", { noremap = true, silent = true })
 vim.keymap.set("v", "g", "l", { noremap = true, silent = true })
 
 -- set up some useful leader shortcuts so it isnt such a PITA to do shit
-vim.keymap.set("n", "<leader>b", ":bnext<enter>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>p", ":bprev<enter>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>b", ":bn<enter>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>v", ":bp<enter>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>a", "@a", { desc = "Run macro a" })
 
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
