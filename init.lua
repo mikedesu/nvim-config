@@ -178,21 +178,27 @@ require("lazy").setup({
 	-- after the plugin has been loaded:
 	--  config = function() ... end
 
-	{ -- Useful plugin to show you pending keybinds.
-		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to 'VimEnter'
-		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
-			--
-			-- Document existing key chains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-			})
-		end,
+	--{ -- Useful plugin to show you pending keybinds.
+	--	"folke/which-key.nvim",
+	--	event = "VimEnter", -- Sets the loading event to 'VimEnter'
+	--	config = function() -- This is the function that runs, AFTER loading
+	--		require("which-key").setup()
+	--		--
+	--		-- Document existing key chains
+	--		require("which-key").register({
+	--			["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+	--			["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+	--			["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+	--			["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+	--			["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+	--		})
+	--	end,
+	--},
+
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
 	-- NOTE: Plugins can specify dependencies.
@@ -516,8 +522,8 @@ require("lazy").setup({
 				go = { "gofmt", "goimports" },
 				python = { "black" },
 				html = { "prettierd" },
-				--c = { "clang_format" },
-				--cpp = { "clang_format" },
+				c = { "clang_format" },
+				cpp = { "clang_format" },
 				zsh = { "shfmt" },
 				css = { "prettierd" },
 				javascript = { "prettierd" },
@@ -526,12 +532,12 @@ require("lazy").setup({
 				x86_64 = { "asmfmt" },
 				Makefile = { "prettierd" },
 				markdown = { "mdformat" },
-				--rust = { "rustfmt" },
-				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				--
-				-- You can use a sub-list to tell conform to run *until* a formatter
-				-- is found.
+				rust = { "rustfmt" },
+				--Conform can also run multiple formatters sequentially
+				--python = { "isort", "black" },
+
+				--You can use a sub-list to tell conform to run *until* a formatter
+				--is found.
 				-- javascript = { { "prettierd", "prettier" } },
 			},
 		},

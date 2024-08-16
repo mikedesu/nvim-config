@@ -34,9 +34,9 @@ vim.keymap.set("v", "f", "j", { noremap = true, silent = true })
 vim.keymap.set("v", "g", "l", { noremap = true, silent = true })
 
 -- set up some useful leader shortcuts so it isnt such a PITA to do shit
-vim.keymap.set("n", "<leader>b", ":bn<enter>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>v", ":bp<enter>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>a", "@a", { desc = "Run macro a" })
+--vim.keymap.set("n", "<leader>b", ":bn<enter>", { desc = "Next buffer" })
+--vim.keymap.set("n", "<leader>v", ":bp<enter>", { desc = "Previous buffer" })
+--vim.keymap.set("n", "<leader>a", "@a", { desc = "Run macro a" })
 
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
 vim.opt.shiftwidth = 2 -- Size of an indent
@@ -47,6 +47,76 @@ vim.keymap.set("n", "<leader><left>", "<c-w><c-h>", { desc = "move focus to the 
 vim.keymap.set("n", "<leader><right>", "<c-w><c-l>", { desc = "move focus to the right window" })
 
 vim.opt.mouse = ""
+
+local harpoon = require("harpoon")
+harpoon:setup({})
+
+-- basic telescope configuration
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
+
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Harpoon",
+			finder = require("telescope.finders").new_table({
+				results = file_paths,
+			}),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+		})
+		:find()
+end
+
+vim.keymap.set("n", "<C-e>", function()
+	toggle_telescope(harpoon:list())
+end, { desc = "Open harpoon window" })
+
+vim.keymap.set("n", "<leader>a", function()
+	harpoon:list():add()
+end)
+
+vim.keymap.set("n", "<leader>1", function()
+	harpoon:list():select(1)
+end)
+
+vim.keymap.set("n", "<leader>2", function()
+	harpoon:list():select(2)
+end)
+
+vim.keymap.set("n", "<leader>3", function()
+	harpoon:list():select(3)
+end)
+
+vim.keymap.set("n", "<leader>4", function()
+	harpoon:list():select(4)
+end)
+
+vim.keymap.set("n", "<leader>n", function()
+	harpoon:list():next()
+end)
+
+vim.keymap.set("n", "<leader>p", function()
+	harpoon:list():prev()
+end)
+
+--vim.keymap.set("n", "<leader>1", function()
+--	harpoon:list():remove()
+--end)
+
+--vim.keymap.set("n", "<C-s>", function()
+--	harpoon:list():select(2)
+--end)
+--vim.keymap.set("n", "<C-d>", function()
+--	harpoon:list():select(3)
+--end)
+--vim.keymap.set("n", "<C-f>", function()
+--	harpoon:list():select(4)
+--end)
+
 --------------------
 -- end of darkmage's custom neovim stuff
 --------------------
