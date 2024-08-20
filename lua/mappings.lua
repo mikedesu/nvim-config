@@ -2,7 +2,12 @@
 -- darkmage's custom neovim stuff
 -- left hand keymap
 --
+
+-- this key motion is for returning to command mode after :term zsh
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>", { noremap = true, silent = true })
+
 -- common key motions involving shift/indent
+
 vim.keymap.set("n", ">f", ">>j>>", { noremap = true, silent = true })
 vim.keymap.set("n", "<d", "<<k<<", { noremap = true, silent = true })
 
