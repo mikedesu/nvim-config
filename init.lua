@@ -183,8 +183,8 @@ require("lazy").setup({
 	--	event = "VimEnter", -- Sets the loading event to 'VimEnter'
 	--	config = function() -- This is the function that runs, AFTER loading
 	--		require("which-key").setup()
-	--		--
-	--		-- Document existing key chains
+	--
+	-- Document existing key chains
 	--		require("which-key").register({
 	--			["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
 	--			["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
@@ -512,6 +512,14 @@ require("lazy").setup({
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		opts = {
+			formatters = {
+				stylua = {
+					command = "stylua",
+					args = { "-" },
+					rootPatterns = { ".stylua.toml", "stylua.toml" },
+				},
+				clang_format = { command = "clang-format", args = { "-assume-filename=%filepath" } },
+			},
 			notify_on_error = true,
 			format_on_save = {
 				timeout_ms = 500,
@@ -521,16 +529,16 @@ require("lazy").setup({
 				lua = { "stylua" },
 				go = { "gofmt", "goimports" },
 				python = { "black" },
-				html = { "prettierd" },
+				--html = { "prettierd" },
 				c = { "clang_format" },
 				cpp = { "clang_format" },
 				zsh = { "shfmt" },
-				css = { "prettierd" },
-				javascript = { "prettierd" },
+				--css = { "prettierd" },
+				--javascript = { "prettierd" },
 				asm = { "asmfmt" },
 				x86 = { "asmfmt" },
 				x86_64 = { "asmfmt" },
-				Makefile = { "prettierd" },
+				--Makefile = { "prettierd" },
 				markdown = { "mdformat" },
 				rust = { "rustfmt" },
 				--Conform can also run multiple formatters sequentially
@@ -696,13 +704,20 @@ require("lazy").setup({
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		build = ":TSUpdate",
+
+		highlight = {
+			enable = false, -- false will disable the whole extension
+			disable = { "html" }, -- list of language that will be disabled
+		},
+
 		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc" },
+				ensure_installed = { "bash", "c", "lua", "markdown", "vim", "vimdoc" },
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = { enable = true },

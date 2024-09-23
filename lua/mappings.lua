@@ -43,8 +43,8 @@ vim.keymap.set("v", "g", "l", { noremap = true, silent = true })
 --vim.keymap.set("n", "<leader>v", ":bp<enter>", { desc = "Previous buffer" })
 --vim.keymap.set("n", "<leader>a", "@a", { desc = "Run macro a" })
 
-vim.opt.tabstop = 2 -- Number of spaces tabs count for
-vim.opt.shiftwidth = 2 -- Size of an indent
+vim.opt.tabstop = 4 -- Number of spaces tabs count for
+vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.smartindent = true -- autoindent new lines
 
