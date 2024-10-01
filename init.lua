@@ -26,6 +26,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.lsp.set_log_level("off")
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 --  For more options, you can see `:help option-list`
