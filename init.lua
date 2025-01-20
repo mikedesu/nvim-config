@@ -760,6 +760,14 @@ require("lazy").setup({
 	-- require 'kickstart.plugins.debug',
 	-- require 'kickstart.plugins.indent_line',
 
+	-- Lua
+	{
+		"folke/zen-mode.nvim",
+		opts = {
+			window = { width = 0.33, height = 1 },
+		},
+	},
+
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.
 	--
@@ -773,4 +781,6 @@ require("mappings")
 
 -- disable copilot on startup
 vim.cmd(":Copilot enable")
+
+--require("zen-mode").toggle({})
 --vim.cmd(":call llama#init()")
