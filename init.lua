@@ -144,6 +144,8 @@ require("lazy").setup({
 	--  This is equivalent to:
 	--    require('Comment').setup({})
 
+	{ "ggml-org/llama.vim" },
+
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 
@@ -197,11 +199,11 @@ require("lazy").setup({
 	--	end,
 	--},
 
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
+	--	{
+	--		"ThePrimeagen/harpoon",
+	--		branch = "harpoon2",
+	--	dependencies = { "nvim-lua/plenary.nvim" },
+	--},
 
 	-- NOTE: Plugins can specify dependencies.
 	--
@@ -441,7 +443,18 @@ require("lazy").setup({
 					cmd = { "clangd", "--offset-encoding=utf-16" },
 				},
 				-- gopls = {},
-				-- pyright = {},
+				pyright = {
+					settings = {
+						python = {
+							analysis = {
+								typeCheckingMode = "on",
+								diagnosticMode = "openFilesOnly",
+								autoSearchPaths = true,
+								useLibraryCodeForTypes = true,
+							},
+						},
+					},
+				},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -531,6 +544,7 @@ require("lazy").setup({
 				lua = { "stylua" },
 				go = { "gofmt", "goimports" },
 				python = { "black" },
+				--python = { "gray" },
 				--html = { "prettierd" },
 				c = { "clang_format" },
 				cpp = { "clang_format" },
@@ -764,8 +778,21 @@ require("lazy").setup({
 	{
 		"folke/zen-mode.nvim",
 		opts = {
-			window = { width = 0.33, height = 1 },
+			window = { width = 0.85, height = 1 },
 		},
+	},
+
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken", -- Only on MacOS or Linux
+		opts = {
+			-- See Configuration section for options
+		},
+		-- See Commands section for default commands if you want to lazy load on them
 	},
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -779,8 +806,15 @@ require("lazy").setup({
 -- import darkmage's custom keybinds
 require("mappings")
 
--- disable copilot on startup
-vim.cmd(":Copilot enable")
+-- enable copilot on startup
 
---require("zen-mode").toggle({})
+--vim.cmd(":Copilot disable")
+vim.cmd(":Copilot enable")
 --vim.cmd(":call llama#init()")
+
+--vim.schedule(function()
+--	require("zen-mode").toggle({})
+--end)
+
+--opt.rocks.enabled = false
+--vim.schedule(vim.cmd(":ZenMode"))
