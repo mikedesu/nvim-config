@@ -52,9 +52,18 @@ vim.keymap.set("n", "<leader><right>", "<c-w><c-l>", { desc = "move focus to the
 
 vim.opt.mouse = ""
 
-vim.keymap.set("n", "<leader>d", function()
+vim.keymap.set("n", "<leader>s", function()
 	vim.cmd(":CopilotChatStop")
 end, { desc = "Run custom function" })
+
+vim.keymap.set("n", "<leader>d", function()
+	vim.cmd(":CopilotChatClose")
+end, { desc = "Run custom function" })
+
+vim.keymap.set("n", "<leader>o", function()
+	vim.cmd(":CopilotChatOpen")
+end, { desc = "Run custom function" })
+
 --------------------
 -- end of darkmage's custom neovim stuff
 --------------------
